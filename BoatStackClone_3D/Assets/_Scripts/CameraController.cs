@@ -7,9 +7,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] Vector3 distance;
     Quaternion rotation;
-    void Start()
-    {
-    }
     void LateUpdate()
     {
         transform.position = target.transform.position - distance;
