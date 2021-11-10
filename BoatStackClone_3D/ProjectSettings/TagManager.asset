@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Obstacle
   - Star
+  - LEVEL
   layers:
   - Default
   - TransparentFX

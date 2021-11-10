@@ -7,6 +7,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] Vector3 distance;
     Quaternion rotation;
+    void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player");
+    }
     void LateUpdate()
     {
         transform.position = target.transform.position - distance;
