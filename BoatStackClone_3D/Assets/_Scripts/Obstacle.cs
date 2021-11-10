@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour
         if (runInEditMode)
         {
             Control();
-            SortObjects();
+            SortObstacle();
         }
     }
     void Control()
@@ -50,7 +50,7 @@ public class Obstacle : MonoBehaviour
             max--;
         }
     }
-    void SortObjects()
+    void SortObstacle()
     {
         float rate=0f;
         for (int i = 0; i < transform.childCount; i++)
@@ -61,6 +61,9 @@ public class Obstacle : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        if (other.GetComponent<RootController>())
+        {
+            Destroy(gameObject);
+        }
     }
 }

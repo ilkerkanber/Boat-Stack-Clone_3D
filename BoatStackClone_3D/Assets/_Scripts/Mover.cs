@@ -46,10 +46,6 @@ public class Mover
     public void Actived(float verticalSpeed, float lerpSpeed)
     {
         rate += (Time.deltaTime / 100) * verticalSpeed;
-        if (rate > spline.nodes.Count - 1)
-        {
-            rate -= spline.nodes.Count - 1;
-        }
         CurveSample curve = spline.GetSample(rate);
         Vector3 targetPos = new Vector3(curve.location.x - posX, curve.location.y + 1f, curve.location.z);
         

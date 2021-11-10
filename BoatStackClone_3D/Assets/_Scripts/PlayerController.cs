@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-    [SerializeField] float verticalSpeed;
+    [field:SerializeField]
+    public float verticalSpeed { get; private set; }
+    
     GameObject road;
     Mover _mover;
     InputController _inputController;
