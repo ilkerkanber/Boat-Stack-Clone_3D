@@ -24,13 +24,22 @@ public class LevelManager : MonoBehaviour
     public void NextLevel()
     {
         currentLevel++;
-        GameObject levelGo = GameObject.FindGameObjectWithTag("LEVEL");
-        Destroy(levelGo);
+        DestroyLevel();
+        CreateLevel();
+    }
+    public void ReloadLevel()
+    {
+        DestroyLevel();
         CreateLevel();
     }
     void CreateLevel()
     {
         Instantiate(levelList[currentLevel]);
+    }
+    void DestroyLevel()
+    {
+        GameObject levelGo = GameObject.FindGameObjectWithTag("LEVEL");
+        Destroy(levelGo);
     }
     void LoadLevel()
     {
