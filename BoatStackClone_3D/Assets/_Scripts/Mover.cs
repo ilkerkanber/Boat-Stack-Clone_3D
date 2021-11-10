@@ -6,7 +6,7 @@ using UnityEngine;
 public class Mover 
 {
     PlayerController _playerController;
-    float rate;
+    float rate=0.1f;
     Spline spline;
     public Mover(PlayerController playerController,GameObject road)
     {
