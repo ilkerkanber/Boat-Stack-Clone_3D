@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Mover 
 {
-    PlayerController _playerController;
-    float rate=0.1f;
     Spline spline;
-    float posX;
+    PlayerController _playerController;
+    
     Quaternion rotZ;
+    float rate=0.1f;
+    float posX;
     
     public Mover(PlayerController playerController,GameObject road)
     {

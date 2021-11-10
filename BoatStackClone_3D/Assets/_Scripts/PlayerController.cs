@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
 
     int inputPos;
     float timer;
-    public PlayerPosition playerPosition;
-    public enum PlayerPosition
+    PlayerPosition playerPosition;
+    enum PlayerPosition
     {
         LEFT2,
         LEFT1,

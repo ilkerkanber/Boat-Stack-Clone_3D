@@ -7,14 +7,15 @@ public class RootController: MonoBehaviour
     Vector3 newPos;
     float timerBug;
     int removeCount;
-    public void AddStar(GameObject star)
+    
+    void AddStar(GameObject star)
     {
         StarsUp();
         star.GetComponent<Collider>().isTrigger = false;
         star.transform.parent = transform;
         star.transform.position = newPos;
     }
-    public void RemoveStar(int willRemove)
+    void RemoveStar(int willRemove)
     {
         for (int i = transform.childCount-1; i >= 0; i--)
         {
