@@ -7,14 +7,7 @@ public class RootController: MonoBehaviour
     Vector3 newPos;
     float timerBug;
     int removeCount;
-
-    void Update()
-    {
-        if (transform.childCount == 1) 
-        {
-            GameManager.Instance.IsGame = false;
-        }
-    }
+  
     void AddStar(GameObject star)
     {
         StarsUp();
@@ -48,6 +41,10 @@ public class RootController: MonoBehaviour
             }
             transform.GetChild(i).position += Vector3.up * 0.25f;
         }
+    }
+    public int GetChildCount()
+    {
+        return transform.childCount;
     }
     void OnTriggerEnter(Collider collider)
     {

@@ -12,15 +12,6 @@ public class LevelManager : MonoBehaviour
         LoadLevel();
         CreateLevel();
     }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
     public void NextLevel()
     {
         currentLevel++;

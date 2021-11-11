@@ -6,27 +6,26 @@ public class GameManager : MonoBehaviour
 {
     public static event System.Action OnGameOver;
     public static event System.Action OnGameWin;
-
     public static GameManager Instance { get; set; }
-
+    
     [field:SerializeField]
     public bool IsGame { get; set; }
+    
+    RootController _rootController;
+    
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+        _rootController = FindObjectOfType<RootController>();
     }
     void Update()
     {
-        if (!IsGame)
+        if (_rootController.GetChildCount()==1)
         {
-            Time.timeScale = 0;
-        }
-        else 
-        {
-            Time.timeScale = 1;
+            OnGameOver?.Invoke();
         }
     }
 }
