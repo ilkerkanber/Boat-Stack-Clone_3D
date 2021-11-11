@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     public int starCount { get; set; }
     public int diamondCount { get; set; }
     public bool IsFinish { get; set; }
-    RootController _rootController;
-    
+    public bool IsOver{ get; set; }
+
     void Awake()
     {
         if (Instance == null)
@@ -20,13 +20,10 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
     }
-    void Start()
-    {
-        _rootController = FindObjectOfType<RootController>();
-    }
     void Update()
     {
-        if (_rootController.GetChildCount()==1)
+        Debug.Log("Finish:" + IsFinish + "Over" + IsOver);
+        if (IsOver)
         {
             if (IsFinish)
             {
@@ -37,6 +34,6 @@ public class GameManager : MonoBehaviour
                 OnGameOver?.Invoke();
             }
         }
-
     }
+
 }

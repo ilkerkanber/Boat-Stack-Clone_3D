@@ -29,9 +29,4 @@ public class UIManager : MonoBehaviour
         WinGameCanvas.SetActive(true);
         LoseGameCanvas.SetActive(false);
     }
-    public void RestartCanvas()
-    {
-        WinGameCanvas.SetActive(false);
-        LoseGameCanvas.SetActive(false);
-    }
 }

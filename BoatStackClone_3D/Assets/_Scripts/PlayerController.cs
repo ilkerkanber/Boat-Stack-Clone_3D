@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float verticalSpeed { get; set; }
 
     [SerializeField] TransformData transformData;
-    [SerializeField] float LerpSpeed;
+    [SerializeField] float LerpSpeed=5f;
     
     Mover _mover;
     InputController _inputController;
@@ -52,10 +52,12 @@ public class PlayerController : MonoBehaviour
     }
     void SelectPosition(int ind)
     {
+        //INPUT YOKKEN VEYA OYUN SONUNDA
         if (ind == 0 || Time.time < timer + 0.2f || GameManager.Instance.IsFinish)
         {
             return;
         }
+        //SINIRLAR ÝÇÝN
         if ((ind == 1 && currentPos==2) || (ind ==-1 && currentPos == -2))
         {
             return;

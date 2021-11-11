@@ -5,9 +5,9 @@ using UnityEngine;
 public class RootController: MonoBehaviour
 {
     Vector3 newPos;
-    float timerBug;
+    float timerBug,timerBug2;
     int removeCount;
-  
+
     void AddStar(GameObject star)
     {
         StarsUp();
@@ -29,6 +29,7 @@ public class RootController: MonoBehaviour
             {
                 Destroy(transform.GetChild(i).gameObject);
                 removeCount++;
+                Invoke("DeadControl", 0.1f);
             }
         }
     }
@@ -44,6 +45,7 @@ public class RootController: MonoBehaviour
                break;
             }
         }
+        DeadControl();
     }
     void StarsUp()
     {
@@ -56,9 +58,23 @@ public class RootController: MonoBehaviour
             transform.GetChild(i).position += Vector3.up * 0.25f;
         }
     }
-    public int GetChildCount()
+    void DeadControl()
     {
-        return transform.childCount;
+        if (transform.childCount == 1)
+        {
+            GameManager.Instance.IsOver = true;
+        }
+    }
+    void OnTriggerStay(Collider collider)
+    {
+        if (collider.TryGetComponent<XPointer>(out XPointer xpointer))
+        {
+            if (!xpointer.IsHasStar)
+            {
+                ChangePosStar(collider.gameObject);
+                xpointer.IsHasStar = true;
+            }
+        }
     }
     void OnTriggerEnter(Collider collider)
     {
@@ -83,18 +99,11 @@ public class RootController: MonoBehaviour
                 pl.SetCenterPosition();
                 GameManager.Instance.IsFinish = true;
                 GameManager.Instance.starCount = transform.childCount - 1;
-                
                 break;
         }
      
-        if (collider.TryGetComponent<XPointer>(out XPointer xpointer))
-        {
-            if (!xpointer.IsHasStar)
-            {
-                ChangePosStar(collider.gameObject);
-                xpointer.IsHasStar = true;
-            }
-        }
+     
+        
         timerBug = Time.time;
     }
 }

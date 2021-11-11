@@ -5,10 +5,10 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> levelList;
-    int currentLevel=0;
+    int currentLevel;
     void Awake()
     {
-        LoadLevel();
+       // LoadLevel();
         CreateLevel();
     }
     public void NextLevel()
@@ -23,13 +23,16 @@ public class LevelManager : MonoBehaviour
         CreateLevel();
         SaveLevel();
     }
-    public void ReloadLevel()
+    public void RestartLevel()
     {
         DestroyLevel();
+        StartCoroutine(waiter(1));
         CreateLevel();
     }
     void CreateLevel()
     {
+        GameManager.Instance.IsOver = false;
+        GameManager.Instance.IsFinish = false;
         Instantiate(levelList[currentLevel]);
     }
     void DestroyLevel()
@@ -51,5 +54,9 @@ public class LevelManager : MonoBehaviour
     void SaveLevel()
     {
         PlayerPrefs.SetInt("Level", currentLevel);
+    }
+    IEnumerator waiter(float time)
+    {
+       yield return new WaitForSeconds(time);
     }
 }

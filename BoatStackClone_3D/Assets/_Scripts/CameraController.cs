@@ -9,12 +9,20 @@ public class CameraController : MonoBehaviour
     Quaternion rotation;
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
+        SearchPlayer();
     }
     void LateUpdate()
     {
+        if (target == null)
+        {
+            SearchPlayer();
+        }
         transform.position = target.transform.position - distance;
         rotation = target.transform.rotation; //z+ x-
         transform.rotation = Quaternion.Euler(rotation.eulerAngles.x+5, rotation.eulerAngles.y, rotation.eulerAngles.z-3);
+    }
+    void SearchPlayer()
+    {
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 }
