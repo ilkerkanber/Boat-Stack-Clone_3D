@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RootController: MonoBehaviour
 {
+    public bool IsFinish { get; private set; }
+
     Vector3 newPos;
     float timerBug;
     int removeCount;
@@ -61,6 +63,10 @@ public class RootController: MonoBehaviour
         {
             int wRemove = collider.GetComponentInParent<Obstacle>().objectCount;
             RemoveStar(wRemove);
+        }
+        if (collider.CompareTag("FINISH"))
+        {
+            IsFinish = true;
         }
     }
 }

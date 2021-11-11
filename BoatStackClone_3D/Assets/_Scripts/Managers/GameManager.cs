@@ -28,7 +28,15 @@ public class GameManager : MonoBehaviour
     {
         if (_rootController.GetChildCount()==1)
         {
-            OnGameOver?.Invoke();
+            if (_rootController.IsFinish)
+            {
+                OnGameWin?.Invoke();
+            }
+            else
+            {
+                OnGameOver?.Invoke();
+            }
         }
+
     }
 }

@@ -17,11 +17,13 @@ public class PlayerController : MonoBehaviour
     float timer;
     void OnEnable()
     {
-        GameManager.OnGameOver += FreezePlayer;    
+        GameManager.OnGameOver += FreezePlayer;
+        GameManager.OnGameWin += FreezePlayer;
     }
     void OnDisable()
     {
         GameManager.OnGameOver -= FreezePlayer;
+        GameManager.OnGameWin -= FreezePlayer;
     }
     void Awake()
     {
