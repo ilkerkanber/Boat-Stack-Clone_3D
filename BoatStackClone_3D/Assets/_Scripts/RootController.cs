@@ -7,7 +7,7 @@ public class RootController: MonoBehaviour
     public bool IsFinish { get; private set; }
 
     Vector3 newPos;
-    float timerBug;
+    float timerBug,timerBug2;
     int removeCount;
   
     void AddStar(GameObject star)
@@ -30,6 +30,19 @@ public class RootController: MonoBehaviour
             {
                 Destroy(transform.GetChild(i).gameObject);
                 removeCount++;
+            }
+        }
+    }
+    void ChangePosStar(GameObject col)
+    {
+        for (int i = transform.childCount-1; i>= 0; i--)
+        {
+            if (transform.GetChild(i).CompareTag("Star")) 
+            {
+               GameObject go = transform.GetChild(i).gameObject;
+               go.transform.parent = col.transform;
+               go.transform.position = transform.position;
+               break;
             }
         }
     }
@@ -57,7 +70,6 @@ public class RootController: MonoBehaviour
         if (collider.CompareTag("Star"))
         {
             AddStar(collider.gameObject);
-            timerBug = Time.time;
         }
         if (collider.CompareTag("Obstacle"))
         {
@@ -68,5 +80,18 @@ public class RootController: MonoBehaviour
         {
             IsFinish = true;
         }
+        timerBug = Time.time;
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (Time.time < timerBug2 + 0.1f)
+        {
+            return;
+        }
+        if (collision.collider.GetComponent<XPointer>())
+        {
+            ChangePosStar(collision.collider.gameObject);
+        }
+        timerBug2 = Time.time;
     }
 }

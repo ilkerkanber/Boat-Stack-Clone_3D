@@ -9,6 +9,6 @@ public class XPointer : MonoBehaviour
     void Awake()
     {
         TextMesh text = GetComponentInChildren<TextMesh>();
-        text.text = "X" + point;
+        text.text = "x" + point;
     }
 }
