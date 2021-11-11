@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
     public static event System.Action OnGameOver;
     public static event System.Action OnGameWin;
     public static GameManager Instance { get; set; }
-    
+
+    public int starCount { get; set; }
+    public int diamondCount { get; set; }
+    public bool IsFinish { get; set; }
     RootController _rootController;
     
     void Awake()
@@ -25,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         if (_rootController.GetChildCount()==1)
         {
-            if (_rootController.IsFinish)
+            if (IsFinish)
             {
                 OnGameWin?.Invoke();
             }

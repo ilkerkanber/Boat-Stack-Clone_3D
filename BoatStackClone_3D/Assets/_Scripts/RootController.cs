@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class RootController: MonoBehaviour
 {
-    public bool IsFinish { get; private set; }
-
     Vector3 newPos;
     float timerBug;
     int removeCount;
@@ -80,10 +78,12 @@ public class RootController: MonoBehaviour
                 break;
 
             case "FINISH":
-                IsFinish = true;
                 PlayerController pl = transform.parent.GetComponent<PlayerController>();
-                pl.verticalSpeed = 5;
+                pl.verticalSpeed = 10;
                 pl.SetCenterPosition();
+                GameManager.Instance.IsFinish = true;
+                GameManager.Instance.starCount = transform.childCount - 1;
+                
                 break;
         }
      

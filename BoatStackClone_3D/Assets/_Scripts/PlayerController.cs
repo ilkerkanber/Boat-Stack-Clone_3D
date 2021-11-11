@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float verticalSpeed { get; set; }
 
     [SerializeField] TransformData transformData;
+    [SerializeField] float LerpSpeed;
     
     Mover _mover;
     InputController _inputController;
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        _mover.Active(verticalSpeed,1);
+        _mover.Active(verticalSpeed,LerpSpeed);
         SelectPosition(inputPos);
     }
     void FreezePlayer()
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
     }
     void SelectPosition(int ind)
     {
-        if (ind == 0 || Time.time < timer + 0.2f)
+        if (ind == 0 || Time.time < timer + 0.2f || GameManager.Instance.IsFinish)
         {
             return;
         }
