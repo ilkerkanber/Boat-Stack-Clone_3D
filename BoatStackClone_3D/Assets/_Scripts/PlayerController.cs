@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [field:SerializeField]
-    public float verticalSpeed { get; private set; }
+    public float verticalSpeed { get; set; }
 
     [SerializeField] TransformData transformData;
     
@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
     void FreezePlayer()
     {
         verticalSpeed = 0;
+    }
+    public void SetCenterPosition() 
+    {
+        currentPos = 0;
+        _mover.NewPosition(transformData.GetValue("CENTER"));
     }
     void SelectPosition(int ind)
     {

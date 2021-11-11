@@ -6,6 +6,7 @@ public class XPointer : MonoBehaviour
 {
     [field:SerializeField]
     public int point { get; private set; }
+    public bool IsHasStar { get; set; }
     void Awake()
     {
         TextMesh text = GetComponentInChildren<TextMesh>();

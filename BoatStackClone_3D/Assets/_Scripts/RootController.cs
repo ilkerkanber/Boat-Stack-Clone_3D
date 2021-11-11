@@ -7,7 +7,7 @@ public class RootController: MonoBehaviour
     public bool IsFinish { get; private set; }
 
     Vector3 newPos;
-    float timerBug,timerBug2;
+    float timerBug;
     int removeCount;
   
     void AddStar(GameObject star)
@@ -16,6 +16,7 @@ public class RootController: MonoBehaviour
         star.GetComponent<Collider>().isTrigger = false;
         star.transform.parent = transform;
         star.transform.position = newPos;
+        star.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
     void RemoveStar(int willRemove)
     {
@@ -41,7 +42,7 @@ public class RootController: MonoBehaviour
             {
                GameObject go = transform.GetChild(i).gameObject;
                go.transform.parent = col.transform;
-               go.transform.position = transform.position;
+               go.transform.position = col.transform.position + new Vector3(0, 0.5f, 0);
                break;
             }
         }
@@ -67,31 +68,33 @@ public class RootController: MonoBehaviour
         {
             return;
         }
-        if (collider.CompareTag("Star"))
+        switch (collider.tag)
         {
-            AddStar(collider.gameObject);
+            case "Star":
+                AddStar(collider.gameObject);
+                break;
+
+            case "Obstacle":
+                int wRemove = collider.GetComponentInParent<Obstacle>().objectCount;
+                RemoveStar(wRemove);
+                break;
+
+            case "FINISH":
+                IsFinish = true;
+                PlayerController pl = transform.parent.GetComponent<PlayerController>();
+                pl.verticalSpeed = 5;
+                pl.SetCenterPosition();
+                break;
         }
-        if (collider.CompareTag("Obstacle"))
+     
+        if (collider.TryGetComponent<XPointer>(out XPointer xpointer))
         {
-            int wRemove = collider.GetComponentInParent<Obstacle>().objectCount;
-            RemoveStar(wRemove);
-        }
-        if (collider.CompareTag("FINISH"))
-        {
-            IsFinish = true;
+            if (!xpointer.IsHasStar)
+            {
+                ChangePosStar(collider.gameObject);
+                xpointer.IsHasStar = true;
+            }
         }
         timerBug = Time.time;
-    }
-    void OnCollisionEnter(Collision collision)
-    {
-        if (Time.time < timerBug2 + 0.1f)
-        {
-            return;
-        }
-        if (collision.collider.GetComponent<XPointer>())
-        {
-            ChangePosStar(collision.collider.gameObject);
-        }
-        timerBug2 = Time.time;
     }
 }

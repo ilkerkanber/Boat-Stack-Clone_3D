@@ -8,9 +8,6 @@ public class GameManager : MonoBehaviour
     public static event System.Action OnGameWin;
     public static GameManager Instance { get; set; }
     
-    [field:SerializeField]
-    public bool IsGame { get; set; }
-    
     RootController _rootController;
     
     void Awake()
