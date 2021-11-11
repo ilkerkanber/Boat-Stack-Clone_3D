@@ -6,33 +6,23 @@ public class PlayerController : MonoBehaviour
 {
     [field:SerializeField]
     public float verticalSpeed { get; private set; }
+
+    [SerializeField] TransformData transformData;
     
-    GameObject road;
     Mover _mover;
     InputController _inputController;
 
-    int inputPos;
+    GameObject road;
+    public int inputPos, currentPos;
     float timer;
-    PlayerPosition playerPosition;
-    enum PlayerPosition
-    {
-        LEFT2,
-        LEFT1,
-        CENTER,
-        RIGHT1,
-        RIGHT2,
-    }
+
     void Awake()
     {
         road = GameObject.FindGameObjectWithTag("PATH");
         _mover = new Mover(this, road);
         _inputController = new InputController();
     }
-    void Start()
-    {
-        playerPosition = PlayerPosition.CENTER;
-    }
-
+   
     void Update()
     {
         inputPos = _inputController.GetInput();
@@ -40,7 +30,7 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
-        _mover.Actived(verticalSpeed,1);
+        _mover.Active(verticalSpeed,1);
         SelectPosition(inputPos);
     }
     void SelectPosition(int ind)
@@ -49,63 +39,30 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        switch (playerPosition)
+        if ((ind == 1 && currentPos==2) || (ind ==-1 && currentPos == -2))
         {
-            case PlayerPosition.LEFT2:
-                if (ind == 1) 
-                {
-                    playerPosition = PlayerPosition.LEFT1;
-                    _mover.LEFT1();
-                }
-                break;
-
-            case PlayerPosition.LEFT1:
-                if (ind == -1)
-                {
-                    playerPosition = PlayerPosition.LEFT2;
-                    _mover.LEFT2();
-                }
-                else
-                {
-                    playerPosition = PlayerPosition.CENTER;
-                    _mover.CENTER();
-                }
-                break;
-
-            case PlayerPosition.CENTER:
-                if (ind == -1)
-                {
-                    playerPosition = PlayerPosition.LEFT1;
-                    _mover.LEFT1();
-                }
-                else if(ind == 1)
-                {
-                    playerPosition = PlayerPosition.RIGHT1;
-                    _mover.RIGHT1();
-                }
-                break;
-
-            case PlayerPosition.RIGHT1:
-                if (ind == -1)
-                {
-                    playerPosition = PlayerPosition.CENTER;
-                    _mover.LEFT1();
-                }
-                else if (ind == 1)
-                {
-                    playerPosition = PlayerPosition.RIGHT2;
-                    _mover.RIGHT2();
-                }
-                break;
-
-            case PlayerPosition.RIGHT2:
-                if (ind == -1)
-                {
-                    playerPosition = PlayerPosition.RIGHT1;
-                    _mover.RIGHT1();
-                }
-                break;
+            return;
         }
+        
+        currentPos+=ind;
+            switch (currentPos)
+            {
+                case -2:
+                    _mover.NewPosition(transformData.GetValue("LEFT2"));
+                    break;
+                case -1:
+                    _mover.NewPosition(transformData.GetValue("LEFT1"));
+                    break;
+                case 0:
+                    _mover.NewPosition(transformData.GetValue("CENTER"));
+                    break;
+                case 1:
+                    _mover.NewPosition(transformData.GetValue("RIGHT1"));
+                    break;
+                case 2:
+                    _mover.NewPosition(transformData.GetValue("RIGHT2"));
+                    break;
+            }
         timer = Time.time;
     }
 }

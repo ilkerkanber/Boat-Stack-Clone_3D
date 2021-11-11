@@ -427,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <verticalSpeed>k__BackingField: 10
+  transformData: {fileID: 11400000, guid: cd4d3e207d2eac845be7fdac29d3e140, type: 2}
 --- !u!1 &3124454279816716699
 GameObject:
   m_ObjectHideFlags: 0

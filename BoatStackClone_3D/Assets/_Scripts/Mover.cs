@@ -17,33 +17,13 @@ public class Mover
         spline = road.GetComponent<Spline>();
         _playerController = playerController;
     }
-    public void LEFT2()
+    //x=POSX y=ROTX z=ROTY
+    public void NewPosition(Vector3 newValue)
     {
-        posX = -2f;
-        rotZ = new Quaternion(-0.258819f, 0.9659258f, 0, 0);
+        posX = newValue.x;
+        rotZ = new Quaternion(newValue.y, newValue.z, 0, 0);
     }
-    public void LEFT1()
-    {
-        posX = -1f;
-        rotZ = new Quaternion(-0.1305262f, 0.9659258f, 0, 0);
-    }
-    public void CENTER()
-    {
-        posX = 0;
-        rotZ = new Quaternion(0, 1, 0, 0);
-    }
-    public void RIGHT1()
-    {
-        posX = 1f;
-        rotZ = new Quaternion(0.1305262f, 0.9914449f, 0, 0);
-    }
-    public void RIGHT2()
-    {
-        posX = 2f;
-        rotZ = new Quaternion(0.258819f, 0.9659258f, 0, 0);
-    }
-    
-    public void Actived(float verticalSpeed, float lerpSpeed)
+    public void Active(float verticalSpeed, float lerpSpeed)
     {
         rate += (Time.deltaTime / 100) * verticalSpeed;
         CurveSample curve = spline.GetSample(rate);
