@@ -61,7 +61,6 @@ public class RootController: MonoBehaviour
         {
             int wRemove = collider.GetComponentInParent<Obstacle>().objectCount;
             RemoveStar(wRemove);
-          
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - Star
   - LEVEL
+  - FINISH
   layers:
   - Default
   - TransparentFX

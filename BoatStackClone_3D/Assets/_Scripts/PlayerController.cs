@@ -15,23 +15,32 @@ public class PlayerController : MonoBehaviour
     GameObject road;
     public int inputPos, currentPos;
     float timer;
-
+    void OnEnable()
+    {
+        GameManager.OnGameOver += FreezePlayer;    
+    }
+    void OnDisable()
+    {
+        GameManager.OnGameOver -= FreezePlayer;
+    }
     void Awake()
     {
         road = GameObject.FindGameObjectWithTag("PATH");
         _mover = new Mover(this, road);
         _inputController = new InputController();
     }
-   
     void Update()
     {
         inputPos = _inputController.GetInput();
     }
-    
     void FixedUpdate()
     {
         _mover.Active(verticalSpeed,1);
         SelectPosition(inputPos);
+    }
+    void FreezePlayer()
+    {
+        verticalSpeed = 0;
     }
     void SelectPosition(int ind)
     {

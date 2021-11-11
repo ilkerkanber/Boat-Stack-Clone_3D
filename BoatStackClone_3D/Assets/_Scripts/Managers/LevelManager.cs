@@ -5,8 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> levelList;
-    int currentLevel;
-
+    int currentLevel=0;
     void Awake()
     {
         LoadLevel();
@@ -14,9 +13,15 @@ public class LevelManager : MonoBehaviour
     }
     public void NextLevel()
     {
+        if (currentLevel == 2)
+        {
+            Debug.Log("LEVEL SAYISI BÝTTÝ");
+            return;
+        }
         currentLevel++;
         DestroyLevel();
         CreateLevel();
+        SaveLevel();
     }
     public void ReloadLevel()
     {

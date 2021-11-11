@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+    void Start()
+    {
         _rootController = FindObjectOfType<RootController>();
     }
     void Update()
