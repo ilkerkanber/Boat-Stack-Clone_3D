@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mover 
+public class Mover: IMover
 {
     Spline spline;
-    PlayerController _playerController;
-    
+    IEntityController _playerController;
+    CurveSample curve;
+
     Quaternion rotZ;
     float rate=0.1f;
     float posX;
     
-    public Mover(PlayerController playerController,Spline roadSpline)
+    public Mover(IEntityController playerController,Spline roadSpline)
     {
         spline = roadSpline;
         _playerController = playerController;
@@ -26,11 +27,10 @@ public class Mover
     public void Active(float verticalSpeed, float lerpSpeed)
     {
         rate += (Time.deltaTime / 100) * verticalSpeed;
-        CurveSample curve = spline.GetSample(rate);
+        curve = spline.GetSample(rate);
         Vector3 targetPos = new Vector3(curve.location.x - posX, curve.location.y + 1f, curve.location.z);
         
         _playerController.transform.position = Vector3.Lerp(_playerController.transform.position, targetPos, Time.deltaTime * lerpSpeed);
         _playerController.transform.rotation = Quaternion.Lerp(_playerController.transform.rotation, rotZ, Time.deltaTime * lerpSpeed);
     }
-
 }

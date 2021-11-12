@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputController 
+public class InputController: Iinput
 {
     Vector2 startPos;
     Vector2 direction;

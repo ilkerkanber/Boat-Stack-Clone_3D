@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour,IEntityController
 {
     [field:SerializeField]
     public float verticalSpeed { get; set; }
@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TransformData transformData;
     [SerializeField] float LerpSpeed=5f;
     
-    Mover _mover;
-    InputController _inputController;
+    IMover _Imover;
+    Iinput _inputController;
 
     public int inputPos, currentPos;
     float timer;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
          Spline road = FindObjectOfType<Spline>();
-        _mover = new Mover(this, road);
+        _Imover = new Mover(this, road);
         _inputController = new InputController();
     }
     void Update()
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        _mover.Active(verticalSpeed,LerpSpeed);
+        _Imover.Active(verticalSpeed,LerpSpeed);
         SelectPosition(inputPos);
     }
     void FreezePlayer()
@@ -48,9 +48,9 @@ public class PlayerController : MonoBehaviour
     public void SetCenterPosition() 
     {
         currentPos = 0;
-        _mover.NewPosition(transformData.GetValue("CENTER"));
+        _Imover.NewPosition(transformData.GetValue("CENTER"));
     }
-    void SelectPosition(int ind)
+    public void SelectPosition(int ind)
     {
         //INPUT YOKKEN VEYA OYUN SONUNDA
         if (ind == 0 || Time.time < timer + 0.2f || GameManager.Instance.IsFinish)
@@ -67,19 +67,19 @@ public class PlayerController : MonoBehaviour
             switch (currentPos)
             {
                 case -2:
-                    _mover.NewPosition(transformData.GetValue("LEFT2"));
+                    _Imover.NewPosition(transformData.GetValue("LEFT2"));
                     break;
                 case -1:
-                    _mover.NewPosition(transformData.GetValue("LEFT1"));
+                    _Imover.NewPosition(transformData.GetValue("LEFT1"));
                     break;
                 case 0:
-                    _mover.NewPosition(transformData.GetValue("CENTER"));
+                    _Imover.NewPosition(transformData.GetValue("CENTER"));
                     break;
                 case 1:
-                    _mover.NewPosition(transformData.GetValue("RIGHT1"));
+                    _Imover.NewPosition(transformData.GetValue("RIGHT1"));
                     break;
                 case 2:
-                    _mover.NewPosition(transformData.GetValue("RIGHT2"));
+                    _Imover.NewPosition(transformData.GetValue("RIGHT2"));
                     break;
             }
         timer = Time.time;
