@@ -5,6 +5,6 @@ using UnityEngine;
 
 public interface IMover 
 {
-    public void Active(float verticalSpeed, float lerpSpeed);
+    public void Active(float verticalSpeed, float lerpVerSpeed, float lerpRotSpeed);
     public void NewPosition(Vector3 newValue);
 }

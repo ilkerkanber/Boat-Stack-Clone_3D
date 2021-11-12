@@ -45,6 +45,5 @@ public class UIManager : MonoBehaviour
     {
         int total = GameManager.Instance.diamondCount * GameManager.Instance.starCount * 10;
         pointText.text = total.ToString();
-
     }
 }

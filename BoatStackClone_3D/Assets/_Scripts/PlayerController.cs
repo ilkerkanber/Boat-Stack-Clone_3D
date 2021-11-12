@@ -9,12 +9,12 @@ public class PlayerController : MonoBehaviour,IEntityController
     public float verticalSpeed { get; set; }
 
     [SerializeField] TransformData transformData;
-    [SerializeField] float LerpSpeed=5f;
+    [SerializeField] float LerpVerSpeed, LerpRotSpeed;
     
     IMover _Imover;
     Iinput _inputController;
 
-    public int inputPos, currentPos;
+    int inputPos, currentPos;
     float timer;
     void OnEnable()
     {
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour,IEntityController
     }
     void FixedUpdate()
     {
-        _Imover.Active(verticalSpeed,LerpSpeed);
+        _Imover.Active(verticalSpeed,LerpVerSpeed,LerpRotSpeed);
         SelectPosition(inputPos);
     }
     void FreezePlayer()

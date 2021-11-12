@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static event System.Action OnGameWin;
     public static GameManager Instance { get; set; }
 
+    public Vector3 roadPosition{ get; set; }
+    public Quaternion roadRotation{ get; set; }
     public int starCount { get; set; }
     public int diamondCount { get; set; }
     public bool IsFinish { get; set; }
@@ -18,13 +20,9 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        diamondCount = 1;
     }
     void Update()
     {
-        Debug.Log("Star Count: " + starCount);
-        Debug.Log("Diamond Count: " + diamondCount);
-
         if (IsOver)
         {
             if (IsFinish)

@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.7073247, g: 0.73741263, b: 0.8018868, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -1026,7 +1026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1194198319
 Transform:
   m_ObjectHideFlags: 0
@@ -1960,7 +1960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9528302, g: 0.12135102, b: 0.61231714, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2074,9 +2074,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelList:
-  - {fileID: 625542987371907390, guid: edf6e77503770cc489a70498487686c9, type: 3}
-  - {fileID: 625542987371907390, guid: fe20c7124b14fe8409085cf3ffba9ad4, type: 3}
   - {fileID: 625542987371907390, guid: 3bef995534159bb42a0a36f7e92ab19c, type: 3}
+  - {fileID: 625542987371907390, guid: fe20c7124b14fe8409085cf3ffba9ad4, type: 3}
+  - {fileID: 625542987371907390, guid: edf6e77503770cc489a70498487686c9, type: 3}
 --- !u!1 &5922471956223421744
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,11 +11,11 @@ public class TransformData : ScriptableObject
     {
         datas = new Dictionary<string, (float posX, float rotX, float rotY)>();
 
-        datas.Add("LEFT2", (-2f, -0.258819f, 0.9659258f));
+        datas.Add("LEFT2", (-2f, -0.2164396f, 0.9762961f));
         datas.Add("LEFT1", (-1f, -0.1305262f, 0.9659258f));
         datas.Add("CENTER", (0f, 0, 1));
         datas.Add("RIGHT1", (1f, 0.1305262f, 0.9659258f));
-        datas.Add("RIGHT2", (2f, 0.258819f, 0.9659258f));
+        datas.Add("RIGHT2", (2f, 0.2164396f, 0.9762961f));
     }
     public Vector3 GetValue(string target)
     {

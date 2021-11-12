@@ -7,7 +7,7 @@ public class Obstacle : MonoBehaviour
 {
     [field:SerializeField]
     public int objectCount{ get; private set; }
-
+    public bool IsEntered{ get; set; }
     [SerializeField] GameObject obstacle;
     [SerializeField] float distanceObjects;
  

@@ -7,7 +7,6 @@ public class RootController: MonoBehaviour
     Vector3 newPos;
     float timerBug;
     int removeCount;
-
     void AddStar(GameObject star)
     {
         StarsUp();
@@ -89,8 +88,12 @@ public class RootController: MonoBehaviour
                 break;
 
             case "Obstacle":
-                int wRemove = collider.GetComponentInParent<Obstacle>().objectCount;
-                RemoveStar(wRemove);
+                Obstacle obs = collider.GetComponentInParent<Obstacle>();
+                if (!obs.IsEntered)
+                {
+                    RemoveStar(obs.objectCount);
+                    obs.IsEntered = true;
+                }
                 break;
 
             case "FINISH":
@@ -105,7 +108,7 @@ public class RootController: MonoBehaviour
                 collider.gameObject.SetActive(false);
                 break;
             case "BOOSTER":
-                transform.parent.GetComponent<PlayerController>().verticalSpeed+=5f;
+                transform.parent.GetComponent<PlayerController>().verticalSpeed+=3f;
                 break;
         }
         timerBug = Time.time;
