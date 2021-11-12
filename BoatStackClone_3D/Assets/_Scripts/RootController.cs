@@ -5,7 +5,7 @@ using UnityEngine;
 public class RootController: MonoBehaviour
 {
     Vector3 newPos;
-    float timerBug,timerBug2;
+    float timerBug;
     int removeCount;
 
     void AddStar(GameObject star)
@@ -100,10 +100,14 @@ public class RootController: MonoBehaviour
                 GameManager.Instance.IsFinish = true;
                 GameManager.Instance.starCount = transform.childCount - 1;
                 break;
+            case "DIAMOND":
+                GameManager.Instance.diamondCount++;
+                collider.gameObject.SetActive(false);
+                break;
+            case "BOOSTER":
+                transform.parent.GetComponent<PlayerController>().verticalSpeed+=5f;
+                break;
         }
-     
-     
-        
         timerBug = Time.time;
     }
 }

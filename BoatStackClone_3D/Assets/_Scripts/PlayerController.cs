@@ -1,3 +1,4 @@
+using SplineMesh;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,6 @@ public class PlayerController : MonoBehaviour
     Mover _mover;
     InputController _inputController;
 
-    GameObject road;
     public int inputPos, currentPos;
     float timer;
     void OnEnable()
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     }
     void Awake()
     {
-        road = GameObject.FindGameObjectWithTag("PATH");
+         Spline road = FindObjectOfType<Spline>();
         _mover = new Mover(this, road);
         _inputController = new InputController();
     }

@@ -12,9 +12,9 @@ public class Mover
     float rate=0.1f;
     float posX;
     
-    public Mover(PlayerController playerController,GameObject road)
+    public Mover(PlayerController playerController,Spline roadSpline)
     {
-        spline = road.GetComponent<Spline>();
+        spline = roadSpline;
         _playerController = playerController;
     }
     //x=POSX y=ROTX z=ROTY

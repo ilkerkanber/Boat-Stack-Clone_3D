@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
         DestroyLevel();
         CreateLevel();
         SaveLevel();
+        GameManager.Instance.ResetValues();
     }
     public void RestartLevel()
     {

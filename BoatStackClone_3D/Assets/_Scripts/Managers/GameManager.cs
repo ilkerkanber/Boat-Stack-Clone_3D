@@ -12,17 +12,19 @@ public class GameManager : MonoBehaviour
     public int diamondCount { get; set; }
     public bool IsFinish { get; set; }
     public bool IsOver{ get; set; }
-
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+        diamondCount = 1;
     }
     void Update()
     {
-        Debug.Log("Finish:" + IsFinish + "Over" + IsOver);
+        Debug.Log("Star Count: " + starCount);
+        Debug.Log("Diamond Count: " + diamondCount);
+
         if (IsOver)
         {
             if (IsFinish)
@@ -34,6 +36,13 @@ public class GameManager : MonoBehaviour
                 OnGameOver?.Invoke();
             }
         }
+    }
+    public void ResetValues()
+    {
+        starCount = 0;
+        diamondCount = 1;
+        IsFinish = false;
+        IsOver = false;
     }
 
 }
