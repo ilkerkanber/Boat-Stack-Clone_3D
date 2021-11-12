@@ -33,13 +33,33 @@ public class PlayerController : MonoBehaviour,IEntityController
         _inputController = new InputController();
     }
     void Update()
-    {
+    {  
+
         inputPos = _inputController.GetInput();
+        StartGameControl();
+
     }
     void FixedUpdate()
     {
+        if (!GameManager.Instance.IsStart)
+        {
+            return;
+        }
         _Imover.Active(verticalSpeed,LerpVerSpeed,LerpRotSpeed);
         SelectPosition(inputPos);
+    }
+
+    void StartGameControl()
+    {
+        if (!GameManager.Instance.IsStart)
+        {
+            _Imover.ResetRoad();
+        }
+        if (inputPos == 1 || inputPos == -1)
+        {
+            GameManager.Instance.IsStart = true ;
+            UIManager.Instance.DisableStartCanvas();
+        }
     }
     void FreezePlayer()
     {

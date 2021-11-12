@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
     int currentLevel;
     void Awake()
     {
-       // LoadLevel();
+        LoadLevel();
         CreateLevel();
     }
     public void NextLevel()

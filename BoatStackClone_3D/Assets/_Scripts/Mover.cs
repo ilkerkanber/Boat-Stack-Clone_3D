@@ -27,14 +27,23 @@ public class Mover: IMover
     public void Active(float verticalSpeed, float lerpVerSpeed,float lerpRotSpeed)
     {
         rate += (Time.deltaTime / 100) * verticalSpeed;
-        curve = spline.GetSample(rate);
+        SetandSendPosition();
         
-        GameManager.Instance.roadPosition = curve.location;
-        GameManager.Instance.roadRotation = curve.Rotation;
         Vector3 targetPos = new Vector3(curve.location.x - posX, curve.location.y + 1f, curve.location.z);
-        
         _playerController.transform.position = Vector3.Lerp(_playerController.transform.position, targetPos, Time.deltaTime * lerpVerSpeed);
         _playerController.transform.rotation = Quaternion.Lerp(_playerController.transform.rotation, rotZ, Time.deltaTime * lerpRotSpeed);
     }
-    
+    //HER BAÞLANGIÇTA YOL SIFIRLANIYOR.
+    public void ResetRoad()
+    {
+        rate = 0.1f;
+        SetandSendPosition ();
+    }
+    void SetandSendPosition()
+    {
+        curve = spline.GetSample(rate);
+        GameManager.Instance.roadPosition = curve.location;
+        GameManager.Instance.roadRotation = curve.Rotation;
+    }
+
 }

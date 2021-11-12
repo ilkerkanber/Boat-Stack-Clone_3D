@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Quaternion roadRotation{ get; set; }
     public int starCount { get; set; }
     public int diamondCount { get; set; }
+    public bool IsStart { get; set; }
     public bool IsFinish { get; set; }
     public bool IsOver{ get; set; }
     void Awake()
@@ -38,9 +39,10 @@ public class GameManager : MonoBehaviour
     public void ResetValues()
     {
         starCount = 0;
-        diamondCount = 1;
+        diamondCount = 0;
         IsFinish = false;
         IsOver = false;
+        IsStart = false;
     }
 
 }

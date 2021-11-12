@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-
+    
+    [SerializeField] GameObject StartGameCanvas;
     [SerializeField] GameObject WinGameCanvas;
     [SerializeField] GameObject LoseGameCanvas;
     [SerializeField] Text pointText;
@@ -30,12 +31,15 @@ public class UIManager : MonoBehaviour
         GameManager.OnGameWin -= SetPoint;
         GameManager.OnGameOver -= EnableLoseCanvas;
     }
+    public void DisableStartCanvas()
+    {
+        StartGameCanvas.SetActive(false);
+    }
     void EnableLoseCanvas()
     {
         LoseGameCanvas.SetActive(true);
         WinGameCanvas.SetActive(false);
     }
-
     void EnableWinCanvas()
     {
         WinGameCanvas.SetActive(true);
