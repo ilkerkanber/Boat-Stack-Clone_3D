@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour,IEntityController
         _Imover.Active(verticalSpeed,LerpVerSpeed,LerpRotSpeed);
         SelectPosition(inputPos);
     }
-
+    //Input gelince swipe ekraný kapanmasý
     void StartGameControl()
     {
         if (!GameManager.Instance.IsStart)

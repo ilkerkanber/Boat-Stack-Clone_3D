@@ -433,7 +433,7 @@ MonoBehaviour:
   StartGameCanvas: {fileID: 1194198318}
   WinGameCanvas: {fileID: 155448354}
   LoseGameCanvas: {fileID: 666815989}
-  pointText: {fileID: 0}
+  pointText: {fileID: 879866804}
 --- !u!1 &449571151
 GameObject:
   m_ObjectHideFlags: 0

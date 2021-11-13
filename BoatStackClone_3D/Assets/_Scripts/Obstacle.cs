@@ -13,17 +13,17 @@ public class Obstacle : MonoBehaviour
  
     void Update()
     {
-        //RunEditMode();
+        RunEditMode();
     }
     //Build sýrasýnda kapatýlmalý
-    //void RunEditMode()
-    //{
-    //    if (runInEditMode)
-    //    {
-    //        Control();
-    //        SortObstacle();
-    //    }
-    //}
+    void RunEditMode()
+    {
+        if (runInEditMode)
+        {
+            Control();
+            SortObstacle();
+        }
+    }
     void Control()
     {
         if (objectCount == transform.childCount)
